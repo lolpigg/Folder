@@ -4,7 +4,7 @@
     {
         public static void Main(string[] args)
         {
-            Folders.Process();
+            Folders.Processing();
         }
     }
 }

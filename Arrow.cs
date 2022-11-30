@@ -17,7 +17,7 @@ namespace Folder
             Max = max;
             Min = min;
         }
-        public static int ArrowAct()
+        public int ArrowAct()
         {
             ConsoleKeyInfo key;
             Pos = Min;
@@ -30,35 +30,40 @@ namespace Folder
                 {
                     case ConsoleKey.UpArrow:
                         Pos--;
+                       /* if (Pos == 1 || Pos == 0)
+                        {
+                            Pos = Max + 2;
+                        }*/
                         if (Pos < Min)
                         {
                             Pos = Max;
                         }
-                        else if (Pos > Max)
+                        else if (Pos > Max + 1)
+                        {
+                            Pos = Min + 1;
+                        }
+                        Console.SetCursorPosition(0, Pos);
+                        Console.Write(ArrowStr);
+                        break;
+                    case ConsoleKey.DownArrow:
+                        /*if (Pos == Max + 2)
+                        {
+                            Pos = Min;
+                        }*/
+                        Pos++;
+                        if (Pos <= Min + 1)
+                        {
+                            Pos = Max;
+                        }
+                        else if (Pos > Max + 1)
                         {
                             Pos = Min;
                         }
                         Console.SetCursorPosition(0, Pos);
                         Console.Write(ArrowStr);
                         break;
-                    case ConsoleKey.DownArrow:
-                        {
-                            if (Pos < Min)
-                            {
-                                Pos = Max;
-                            }
-                            if (Pos > Max)
-                            {
-                                Pos = Min;
-                            }
-                            Pos++;
-                            Console.SetCursorPosition(0, Pos);
-                            Console.Write(ArrowStr);
-                        }
-                        break;
                     case ConsoleKey.Escape:
-                        Pos = -1000;
-                        return Pos;
+                        return -1000;
                         break;
                 }
             } while (key.Key != ConsoleKey.Enter);
